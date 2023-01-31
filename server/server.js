@@ -8,13 +8,12 @@ const app = express();
 
 app.get("/page", async (req, res) => {
   const { value } = await App.getProps();
-  console.log(value, "aqaaa");
   fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
     if (err) {
       return res.status(500).send("Some error happened");
     }
     const html = `<div id="root">${ReactDOMServer.renderToString(
-      <App value={value} />
+      <App />
     )}</div>`;
     return res.send(data.replace('<div id="root"></div>', html));
   });

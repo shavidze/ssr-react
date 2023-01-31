@@ -1,24 +1,16 @@
 import React, { useState } from "react";
 
-const App = ({ value }) => {
-  const [count, setCount] = useState(value);
-  console.log("app is loaded");
-  const handleUpdate = (x) => {
-    setCount(x);
-  };
+const App = ({ initialValue }) => {
+  const [count, setCount] = useState(initialValue);
+  console.log(initialValue);
+
   if (typeof window === "undefined") return <>x</>;
   return (
     <>
       <div className="App">
-        <button
-          onClick={() => {
-            handleUpdate(count + 1);
-          }}
-        >
-          Increase
-        </button>
+        <button onClick={() => setCount(count + 1)}>Increase</button>
         <div style={{ margin: "20px" }}>{count}</div>
-        <button onClick={() => handleUpdate(count - 1)}>Decrease</button>
+        <button onClick={() => setCount(count - 1)}>Decrease</button>
       </div>
     </>
   );
