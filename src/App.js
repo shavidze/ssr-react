@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+const App = ({ value }) => {
+  const [count, setCount] = useState(value);
+  console.log("app is loaded");
+  const handleUpdate = (x) => {
+    setCount(x);
+  };
+  if (typeof window === "undefined") return <>x</>;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <div className="App">
+        <button
+          onClick={() => {
+            handleUpdate(count + 1);
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Increase
+        </button>
+        <div style={{ margin: "20px" }}>{count}</div>
+        <button onClick={() => handleUpdate(count - 1)}>Decrease</button>
+      </div>
+    </>
   );
-}
+};
 
+App.getProps = async () => {
+  // mock for apis
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ value: 10 });
+    }, 1000);
+  });
+};
 export default App;
