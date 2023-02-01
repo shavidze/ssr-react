@@ -7,7 +7,6 @@ import ReactDOMServer from "react-dom/server";
 const app = express();
 
 app.get("/page", async (req, res) => {
-  const { value } = await App.getProps();
   fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
     if (err) {
       return res.status(500).send("Some error happened");

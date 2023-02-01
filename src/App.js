@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const App = ({ initialValue }) => {
   const [count, setCount] = useState(initialValue);
-  console.log(initialValue);
 
   if (typeof window === "undefined") return <>x</>;
   return (
@@ -16,12 +15,4 @@ const App = ({ initialValue }) => {
   );
 };
 
-App.getProps = async () => {
-  // mock for apis
-  return await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ value: 10 });
-    }, 1000);
-  });
-};
 export default App;
